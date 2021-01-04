@@ -86,4 +86,28 @@ def take_bet(chips):
 
 #pedir cartas 
 def hit(deck,hand):
-    pass
+    hand.hit(deck.deal_cards())
+    hand.adjust_ace()
+
+# preguntar si pide o si se queda 
+jugando = True
+def hit_or_stand(deck,hand):
+    global jugando
+    while True:
+        preguntar = input('Hit or Stand? Enter (H-S): ')
+        if preguntar.lower().startswith('h'):
+            hand.hit(deck.deal_cards())
+        elif preguntar.lower().startswith('s'):
+            print('Dealer is playing!')
+            jugando = False
+        else:
+            print('Please try again!')
+            continue
+        break
+
+#mostrar las cartas 
+def show_some(player,dealer):
+    player.cards
+
+#para mostrar algunas cartas tengo q agarrar player y decir hand (tengo que mostrar las dos)
+#mientras que para mostrar las cartas de dealer tengo que mostrar solo una y la otra no

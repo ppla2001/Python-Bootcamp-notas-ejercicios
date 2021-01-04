@@ -1,10 +1,10 @@
-from IPython.display import clear_output #para borrar diferentes tictac boards para que no este mostrando todos
-
+#from IPython.display import clear_output #para borrar diferentes tictac boards para que no este mostrando todos
+#no se porq no me toma clear_output (creo q solo sirve para jupyter)
 
 # primero hago el tablero
 test_board = ['','X','O','X','O','X','O','X','O','X'] #lo uso nada mas para chequear en los pasos previos al juego completo 
 def display_board(board):
-    clear_output()
+    #clear_output()
     print(' ' + '|' + ' ' + '|' + ' ')
     print(board[1] + '|' + board[2] + '|' + board[3])
     print(' ' + '|' + ' ' + '|' + ' ')
