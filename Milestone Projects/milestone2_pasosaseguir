@@ -1,0 +1,14 @@
+Primero tengo que hacer cada carta (dejar en claro cada valor, j q k = 10 y a = 1 o 11 (esta en las notas))
+despues el deck of cards 
+despues tengo que mezclar el deck
+tengo que pedir que el jugador haga su bet
+jugador hace su bet entonces reparto dos cartas al jugador y dos al dealer (cartas de dealer 1 q se ve otra q no)
+resto las cartas del deck 
+le pregunto a jugador si pide o se queda 
+si pide le doy una carta y chequeo si se paso, si se paso doy vuelta carta de dealer y gano dealer entonces resto bet de jugador
+si no se paso le pregunto si pide o se queda (si pide se repite linea 7)
+si no pide paso al dealer, doy vuelta la carta y chequeo que numero es, si el dealer tiene 17 o mas no puede pedir 
+si tiene menos de 17 tiene que pedir, una vez que pide chequeo si se paso de 21, si se paso de 17 (no puede pedir) y si le gano al jugador
+si el jugador le gano, se le devuelve el doble de la apuesta
+si el jugador perdio, se le restan las fichas 
+se pregunta si se quiere seguir jugando
