@@ -107,7 +107,7 @@ def hit_or_stand(deck,hand):
 
 #mostrar las cartas 
 def show_some(player,dealer):
-    player.cards
+    print(player.cards)
 
 #para mostrar algunas cartas tengo q agarrar player y decir hand (tengo que mostrar las dos)
 #mientras que para mostrar las cartas de dealer tengo que mostrar solo una y la otra no
