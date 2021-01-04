@@ -105,9 +105,32 @@ def hit_or_stand(deck,hand):
             continue
         break
 
-#mostrar las cartas 
+#mostrar las cartas cuando recien empieza la partida (jugador se ven las dos y dealer solo se ve 1)
 def show_some(player,dealer):
-    print(player.cards)
+    print(f'Jugador tiene:\n{*player.cards}')
+    print(f'Jugador tiene:\n{player.value}')
+    if dealer.cards == 2:
+        print('Dealer tiene:\n{}'.format(dealer.cards[1]))
 
-#para mostrar algunas cartas tengo q agarrar player y decir hand (tengo que mostrar las dos)
-#mientras que para mostrar las cartas de dealer tengo que mostrar solo una y la otra no
+#cuando le toca jugar al dealer se tienen que mostrar todas las cartas, por lo tanto se da vuelta la carta que estaba dada vuelta 
+def show_all(player,dealer):
+    print(f'Jugador tiene:\n{*player.cards}')
+    print(f'Jugador tiene:\n{player.value}')
+    print('Dealer tiene:\n{}'.format(*dealer.cards))
+    print('Dealer tiene:\n{}'.format(dealer.value))
+
+#todas las formas en que termina la partida 
+#jugador pierde
+def player_busts(player,dealer,chips): #se pasa de 21 o dealer tiene mas que jugador y menos q 21
+    if player.value > 21 or player.value < dealer.value < 21:
+        return f'La casa gana, jugador pierde {chips.lose_bet()}'
+
+#jugador gana 
+def player_wins(player,dealer,chips):
+    if player.value <= 21 and 21 >= player.value > dealer.value:
+        return f'Jugador gana {chips.win_bet}'
+
+#dealer pierde
+def dealer_busts(player,dealer,chips):
+    if dealer.value > 21:
+        pass
