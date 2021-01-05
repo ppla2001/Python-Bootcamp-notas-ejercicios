@@ -133,4 +133,24 @@ def player_wins(player,dealer,chips):
 #dealer pierde
 def dealer_busts(player,dealer,chips):
     if dealer.value > 21:
-        pass
+        return 'Jugador gana {}'.format(chips.win_bet)
+
+#dealer gana 
+def dealer_wins(player,dealer,chips):
+    if dealer.value > player.value or player.value > 21 and dealer.value <= 21:
+        return 'Dealer gana, jugador pierde {}'.format(chips.lose_bet)
+
+#empate 
+def push(player,dealer,chips):
+    if player.value == dealer.value:
+        return f'Empate! Se le devuelve a jugador {chips.bet}'
+
+#game logic
+while True:
+    #introduccion
+    print('Bienvenido a BlackJack 21!')
+    #creo el mazo
+    deck = Deck()
+    deck.shuffle_deck()
+    #mano de jugador y mano de dealer
+    player1 = Player()
