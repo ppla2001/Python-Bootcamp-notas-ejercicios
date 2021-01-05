@@ -43,8 +43,7 @@ print(my_deck)'''
 
 #cree lo que puede hacer el jugador sin tomar las apuestas
 class Player():
-    def __init__(self,name):
-        self.name = name
+    def __init__(self):
         self.cards = []
         self.value = 0 
         self.aces = 0
@@ -55,12 +54,12 @@ class Player():
             self.aces += 1
     def adjust_ace(self):
         while self.value > 21 and self.aces:
-            self.values -= 10
+            self.value -= 10
             self.aces -= 1
 
 #cree las apuestas
 class Apuesta():
-    def __init__(self,bet):
+    def __init__(self):
         self.total = 100
         self.bet = 0 
     def win_bet(self):
@@ -107,43 +106,44 @@ def hit_or_stand(deck,hand):
 
 #mostrar las cartas cuando recien empieza la partida (jugador se ven las dos y dealer solo se ve 1)
 def show_some(player,dealer):
-    print(f'Jugador tiene:\n{*player.cards}')
+    print(f'Jugador tiene:')
+    print('\n'.join(map(str,player.cards)))
     print(f'Jugador tiene:\n{player.value}')
-    if dealer.cards == 2:
-        print('Dealer tiene:\n{}'.format(dealer.cards[1]))
+    print('Dealer tiene:\n{}'.format(dealer.cards[1]))
 
 #cuando le toca jugar al dealer se tienen que mostrar todas las cartas, por lo tanto se da vuelta la carta que estaba dada vuelta 
 def show_all(player,dealer):
-    print(f'Jugador tiene:\n{*player.cards}')
+    print(f'Jugador tiene:')
+    print('\n'.join(map(str,player.cards)))
     print(f'Jugador tiene:\n{player.value}')
-    print('Dealer tiene:\n{}'.format(*dealer.cards))
+    print('Dealer tiene:')
+    print('\n'.join(map(str,dealer.cards)))
     print('Dealer tiene:\n{}'.format(dealer.value))
 
 #todas las formas en que termina la partida 
 #jugador pierde
 def player_busts(player,dealer,chips): #se pasa de 21 o dealer tiene mas que jugador y menos q 21
-    if player.value > 21 or player.value < dealer.value < 21:
-        return f'La casa gana, jugador pierde {chips.lose_bet()}'
+    print('Jugador se pasa!')
+    chips.lose_bet()
 
 #jugador gana 
 def player_wins(player,dealer,chips):
-    if player.value <= 21 and 21 >= player.value > dealer.value:
-        return f'Jugador gana {chips.win_bet}'
+    print('Jugador gana!')
+    chips.win_bet()
 
 #dealer pierde
 def dealer_busts(player,dealer,chips):
-    if dealer.value > 21:
-        return 'Jugador gana {}'.format(chips.win_bet)
+    print('Dealer se pasa!')
+    chips.win_bet()
 
 #dealer gana 
 def dealer_wins(player,dealer,chips):
-    if dealer.value > player.value or player.value > 21 and dealer.value <= 21:
-        return 'Dealer gana, jugador pierde {}'.format(chips.lose_bet)
+    print('Dealer Gana!')
+    chips.lose_bet()
 
 #empate 
 def push(player,dealer,chips):
-    if player.value == dealer.value:
-        return f'Empate! Se le devuelve a jugador {chips.bet}'
+    print('Empate!')
 
 #game logic
 while True:
@@ -154,3 +154,45 @@ while True:
     deck.shuffle_deck()
     #mano de jugador y mano de dealer
     player1 = Player()
+    player1.hit(deck.deal_cards())
+    player1.hit(deck.deal_cards())
+    #mano de dealer
+    dealer = Player()
+    dealer.hit(deck.deal_cards())
+    dealer.hit(deck.deal_cards())
+    #set up de las chips que tiene el jugador
+    player1_chips = Apuesta()
+    #set up para la apuesta del jugador 
+    take_bet(player1_chips)
+    #mostrar las dos cartas del jugador pero solo 1 del dealer 
+    show_some(player1,dealer)
+    while jugando:
+        #preguntarle si quiere pedir o quedarse 
+        hit_or_stand(deck,player1)
+        show_some(player1,dealer)      
+        if player1.value > 21:
+            player_busts(player1,dealer,player1_chips)
+            break
+    if player1.value <= 21:
+        while dealer.value <= 17:
+            hit(deck,dealer)
+            show_all(player1,dealer)
+        if dealer.value > 21:
+            dealer_busts(player1,dealer,player1_chips)
+        elif dealer.value > player1.value:
+            dealer_wins(player1,dealer,player1_chips)
+        elif dealer.value < player1.value:
+            player_wins(player1,dealer,player1_chips)
+        else:
+            push(player1,dealer,player1_chips)
+    print('\nEl jugador hasta ahora tiene {}'.format(player1_chips.total))
+
+    #preguntar si va a jugar de nuevo o si se retira
+    pregunta = input('Jugar de nuevo? (Si/No): ')
+
+    if pregunta[0].lower() == 's':
+        jugando = True
+        continue
+    else:
+        print('Gracias por jugar!')
+        break
