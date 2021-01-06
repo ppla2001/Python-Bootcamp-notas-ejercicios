@@ -7,6 +7,8 @@ ranks = ('Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten',
 values = {'Two':2, 'Three':3, 'Four':4, 'Five':5, 'Six':6, 'Seven':7, 'Eight':8, 'Nine':9, 'Ten':10, 'Jack':10,
          'Queen':10, 'King':10, 'Ace':11}
 
+jugando = True
+
 #cree las cartas 
 class Card():
     def __init__(self,suit,rank):
@@ -53,7 +55,7 @@ class Player():
         if card.rank == 'Ace':
             self.aces += 1
     def adjust_ace(self):
-        while self.value > 21 and self.aces:
+        while self.value > 21 and self.aces > 0:
             self.value -= 10
             self.aces -= 1
 
@@ -89,7 +91,6 @@ def hit(deck,hand):
     hand.adjust_ace()
 
 # preguntar si pide o si se queda 
-jugando = True
 def hit_or_stand(deck,hand):
     global jugando
     while True:
@@ -142,7 +143,7 @@ def dealer_wins(player,dealer,chips):
     chips.lose_bet()
 
 #empate 
-def push(player,dealer,chips):
+def push(player,dealer):
     print('Empate!')
 
 #game logic
@@ -174,7 +175,7 @@ while True:
             player_busts(player1,dealer,player1_chips)
             break
     if player1.value <= 21:
-        while dealer.value <= 17:
+        while dealer.value < 17:
             hit(deck,dealer)
             show_all(player1,dealer)
         if dealer.value > 21:
@@ -184,7 +185,7 @@ while True:
         elif dealer.value < player1.value:
             player_wins(player1,dealer,player1_chips)
         else:
-            push(player1,dealer,player1_chips)
+            push(player1,dealer)
     print('\nEl jugador hasta ahora tiene {}'.format(player1_chips.total))
 
     #preguntar si va a jugar de nuevo o si se retira
