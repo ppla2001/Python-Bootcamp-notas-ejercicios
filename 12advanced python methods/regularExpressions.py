@@ -42,7 +42,7 @@ celular.group()
 celular_pattern = re.compile(r'(\d{3})-(\d{3})-(\d{4})') # lo que hace esto es los separa en tres grupos mientras que toma \d osea que sigue tomando que quiero digitos en la separacion
 results = re.search(celular_pattern,text)
 results.group()
-results.group(1) #esto me da la parte 1 de 3 de la separacion que hicimos arriba para los numeros 
+results.group(1) #esto me da la parte 1 de 3 de la separacion que hicimos arriba para los numeros
 
 ##### PARTE 3 REGULAR EXPRESSIONS #####
 re.search(r'cat','The cat is here') # me da resultado
@@ -56,10 +56,10 @@ re.findall(r'^\d','The 1 is a number') #me da como que no hay resultado
 re.findall(r'\d$','The number is 2') # string im looking for ends with a (in this case) digit
 #quiero exclude algunos characters
 phrase = 'There are 3 numbers 34 inside 5 this sentence' #quiero que me devuelva solo lo q no son numeros, exclude numbers
-pattern = r'[^\d]' #esto esta diciendo que exlcuya digitos 
+pattern = r'[^\d]' #esto esta diciendo que exlcuya digitos
 re.findall(pattern,phrase) #me devuelve lista de todo lo que no son numeros
 #para que se vea mas lindo cuando corro el codigo
-pattern = r'[^\d]+' #esto esta diciendo que exlcuya digitos 
+pattern = r'[^\d]+' #esto esta diciendo que exlcuya digitos
 re.findall(pattern,phrase) #me devuelve lista de todo lo que no son numeros
 
 #get rid of punctuation
@@ -67,12 +67,12 @@ test_phrase = 'This is a string! But it has punctuation. How can we remove it?'
 re.findall(r'[^!.?]+',test_phrase)
 #o
 clean = re.findall(r'[^!.? ]+',test_phrase)
-' '.join(clean) #todo esto lo hice para unir todo sacandole la punctuation 
+' '.join(clean) #todo esto lo hice para unir todo sacandole la punctuation
 #inclusion
 texto = 'Only find the hypen-words in this sentence. But you do not know how long-ish they are.'
 patternn = r'[\w]+-[\w]+'
 re.findall(patternn,texto)
-#multiple options for matching 
+#multiple options for matching
 textone = 'Hello, would you like some catfish?'
 texttwo = "Hello, would you like to take a catnap?"
 textthree = "Hello, have you seen this caterpillar?"
