@@ -1,0 +1,4 @@
+hay que descargarse con pip install en cmd
+bs4
+lxml
+requests

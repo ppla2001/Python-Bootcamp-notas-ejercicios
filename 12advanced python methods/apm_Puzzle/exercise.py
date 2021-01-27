@@ -27,7 +27,7 @@ for folder,subfolders,files in os.walk(f_path):
         # print(full_path) lo dejo como comentario porq me llena con todas las carpetas y files
         results.append(busqueda(full_path))
 
-# results 
+# results
 
 for r in results:
     if r != None:
