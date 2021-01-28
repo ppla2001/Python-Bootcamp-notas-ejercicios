@@ -20,3 +20,27 @@ for frase in soup.select('.text'):
 quotes
 
 #parte 5
+for tag in soup.select('.tag-item'):
+    print(tag.text)
+
+#parte 6
+base_url = 'https://quotes.toscrape.com/page/{}'
+
+todavia_paginas = True
+authors = set()
+page = 1 
+
+while todavia_paginas:
+    page_url = base_url.format(str(page))
+    res = requests.get(page_url)
+    
+    if 'No quotes found!' in res.text:
+        break
+
+    soup = bs4.BeautifulSoup(res.text,'lxml')
+
+    for name in soup.select('.author'):
+        authors.add(name.text)
+    page += 1
+
+authors 
