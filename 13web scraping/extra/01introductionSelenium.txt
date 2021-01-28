@@ -1,0 +1,4 @@
+tengo que descargarme selenium con pip install selenium
+despues tengo que descargarme chrome driver de https://sites.google.com/a/chromium.org/chromedriver/downloads
+para descargarme chromedriver primero me tengo que fijar que version tengo de chrome
+cuando me lo descargue lo paso a disco c program files x86 o algo asi para tener un directory facil de encontrar
