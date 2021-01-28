@@ -1,0 +1,1 @@
+hay que descargarse desde consola pip install pillow
