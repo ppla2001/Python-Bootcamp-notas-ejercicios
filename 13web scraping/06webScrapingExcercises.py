@@ -24,6 +24,7 @@ for tag in soup.select('.tag-item'):
     print(tag.text)
 
 #parte 6
+#sin saber cuantas paginas tiene la url
 base_url = 'https://quotes.toscrape.com/page/{}'
 
 todavia_paginas = True
@@ -44,3 +45,13 @@ while todavia_paginas:
     page += 1
 
 authors 
+
+#sabiendo que tiene solo 10 paginas 
+authors = set()
+
+for page in range(1,11):
+    page_url = base_url.format(str(page))
+    res = requests.get(page_url)
+    soup = bs4.BeautifulSoup(res.text,'lxml')
+    for name in soup.select('.author'):
+        authors.add(name.text)
