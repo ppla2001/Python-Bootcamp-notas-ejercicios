@@ -1,0 +1,3 @@
+Para csv no hace falta descargarse nada 
+Para PDF hace falta descargarse en consola pip install PyPDF2
+hay varios archivos pdf q no van a ser legibles con este PyPDF2 
