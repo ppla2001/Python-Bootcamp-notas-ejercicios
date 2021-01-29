@@ -1,0 +1,2 @@
+no se porq no me esta funcionando pero tengo la teoria en
+https://selenium-python.readthedocs.io/page-objects.html#page-object-classes
